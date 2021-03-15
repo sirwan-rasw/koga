@@ -3,6 +3,8 @@
  
  include "header.php";
 
+ echo  "comit1";
+
  if($type=="koga")
 {
 ?>
