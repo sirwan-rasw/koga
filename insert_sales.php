@@ -2,9 +2,11 @@
     <?php
  
  include "header.php";
+    require __DIR__ . '/vendor/autoload.php';
 
 
- if($type=="koga")
+
+    if($type=="koga")
 {
 ?>
 <script>window.location="deps.php";</script>
@@ -102,10 +104,52 @@ $check="";
         echo $price_qaim_draw."<br>";
         echo $mawa."<br>";
 
+
+
+
+
+        $options = array(
+            'cluster' => 'ap2',
+            'useTLS' => true
+        );
+        $pusher = new Pusher\Pusher(
+            '77c215ea00d08d2819e5',
+            '30dbfab0067a0329d9f1',
+            '1173368',
+            $options
+        );
+
+        $query1 = "Select COUNT(id_s) from sales where id_comp='$id_comp' and wasl=0 and state=0 and sent='0' and id_koga='$id_koga'";
+        $res1=mysqli_query($conn, $query1);
+        $row1=mysqli_fetch_assoc($res1);
+
+        $r=$row1["COUNT(id_s)"];
+
+
+
+        $data['message'] =$r;
+        $pusher->trigger('my-channel', 'my-event', $data);
+
+
+
+
+
+
+
+
+
+
+
         if($checks["var1"])
         {
             
             $check=true;
+
+
+
+
+
+
 
  
         if($check==true)
@@ -470,3 +514,21 @@ $("form").submit(function(){
 
 });
 </script>
+
+
+
+    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+    <script>
+
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
+
+        var pusher = new Pusher('c6309e920834226136f7', {
+            cluster: 'ap2'
+        });
+
+        var channel = pusher.subscribe('my-channel');
+        channel.bind('my-event', function(data) {
+            alert(JSON.stringify(data));
+        });
+    </script>

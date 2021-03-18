@@ -3,7 +3,7 @@
 include "header.php";
 
 
-
+$anjam["sum"]=0;
 
 $pricing=$_SESSION["type_price"];
 
@@ -157,6 +157,9 @@ $id=mysqli_escape_string($conn,$_GET["id"]);
 $sql="SELECT * from test where zh_psula='$id'";
 $res=mysqli_query($conn,$sql);
 
+//$leng=mysqli_fetch_lengths($res);
+//print_r($leng);
+
 while($row=mysqli_fetch_array($res))
 {
 
@@ -191,7 +194,7 @@ while($row=mysqli_fetch_array($res))
             ?>
 
             <td style="border: black 2px solid; padding: 6px; margin: 6px"><?php echo $row["date"];  ?></td>
-            <td style="border: black 2px solid; padding: 6px; margin: 6px"><?php echo $row["id_skalakan"];  ?></td>
+            <td style="border: black 2px solid; padding: 6px; margin: 6px"><?php echo $row["id_skalakan"]; $skala=$row["id_skalakan"];  ?></td>
 
 
 
@@ -207,14 +210,14 @@ while($row=mysqli_fetch_array($res))
                 <?php
             ?>
 
-            <td style="border: black 2px solid; padding: 6px; margin: 6px"><?php $anjam= ($row["draw"]* $g)*(100-$d)/100; echo number_format($anjam);  ?></td>
+            <td style="border: black 2px solid; padding: 6px; margin: 6px"><?php $anjam["sum"]= ($row["draw"]* $g)*(100-$d)/100; echo number_format($anjam["sum"]);  ?></td>
 
 
             <?php
             }else{
 
                 ?>
-           <td style="border: black 2px solid; padding: 6px; margin: 6px"><?php $anjam= ($row["draw"])*(100-$d)/100; echo number_format($anjam);  ?></td>
+           <td style="border: black 2px solid; padding: 6px; margin: 6px"><?php $anjam= ($row["draw"])*(100-$d)/100; echo number_format($anjam); ?></td>
 
                 <?php
 
@@ -268,8 +271,30 @@ while($row=mysqli_fetch_array($res))
 </div>
 
 
+
+
 <?php
 
+    echo array_sum($anjam);
+    echo "<br>";
+
+
+
+    if($skala!=0) {
+        $sql_skala_value = "select price_skala from test1 where id_skala='$skala' limit 1";
+        $qu_value = mysqli_query($conn, $sql_skala_value);
+        $row_value = mysqli_fetch_array($qu_value);
+
+        echo "<br>";
+
+
+        echo $ko = $anjam1 - $row_value["price_skala"];
+
+    }else{
+        echo  "هیچ سکاڵایەک تۆمار نەکراوە ";
+        echo "<br>";
+//        echo  $ko=$anjam1;
+    }
 
 $sql_pass="SELECT password from companies where id='$id_comp'";
             $qu_sql_pass=mysqli_query($conn,$sql_pass);
@@ -455,7 +480,7 @@ rowID:rowID
 {
 
 
-    window.location.href="inv_dest.php?id="+zh_psula;
+    window.location="inv_dest.php?id="+zh_psula;
 
 
 // swal("Good job!", "ئەم قائیمە گەڕایەوە", "success");

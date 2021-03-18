@@ -243,16 +243,129 @@ include "db.php";
     <?php
   }
             ?>
-            <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i></i></a></span> <span> <i class="ion-ios-arrow-forward"></i></span></p>
+                        <p class="breadcrumbs"><span class="mr-2"><a href="index.html">
+                                    <?php
+
+                            $_SESSION["type_price"]="dolar";
+
+                            $pricing=$_SESSION["type_price"];
+
+
+
+
+                        if ($pricing == "dolar")
+                        {
+
+
+                        ?>
+
+                                      <div align="center">
+                                          <label style="font-size: 20px;" for=""> دۆلار  </label>
+                                          <input style="font-size: 20px; width: 20px; height: 20px;" name="c1" type="checkbox" value="dolar" id="c1" checked>
+
+
+                                          <label style="font-size: 20px" for=""> دینار </label>
+                                          <input style="font-size: 20px ;width: 20px; height: 20px;" name="c1" type="checkbox" value="dinar" id="c2">
+                                      </div>
+                                      <?php
+                        }else{
+
+    ?>
+
+
+              <div align="center">
+                  <label style="font-size: 20px;" for=""> دۆلار  </label>
+                  <input style="font-size: 20px; width: 20px; height: 20px;" name="c1" type="checkbox" value="dolar" id="c1">
+
+
+                  <label style="font-size: 20px" for=""> دینار </label>
+                  <input style="font-size: 20px ;width: 20px; height: 20px;" name="c1" type="checkbox" value="dinar" id="c2" checked>
+              </div>
+
+              <?php
+
+}
+?>
+
+
+                        <i></i></a></span> <span> <i class="ion-ios-arrow-forward"></i></span></p>
           </div>
         </div>
       </div>
     </section>
 
 
+  <script>
+      $(document).ready(function(){
 
-  
-    <section class="ftco-section">
+
+
+          $("#c1").change(function(){
+
+              $("#c2").prop("checked", false);
+              $("#c2").val("");
+              //hamw away la myinpt daya la txt xazna
+              var txt=$(this).val();
+
+              $.ajax({
+
+                  url:"deps_dest.php",
+                  method:"post",
+                  data:{
+                      key:"c1",
+                      search:txt},
+                  dataType:"text",
+                  success:function(data)
+                  {
+
+                      alert("جۆری پارەکەت گؤردرا");
+
+                  }
+
+              });
+
+
+
+          });
+
+          $("#c2").change(function(){
+              // $("#c1").
+
+              $("#c1").prop("checked", false);
+
+              $("#c1").val("");
+
+//hamw away la myinpt daya la txt xazna
+              var txt=$(this).val();
+// if(txt!='')
+
+              $.ajax({
+
+                  url:"deps_dest.php",
+                  method:"post",
+                  data:{
+                      key:"c2",
+                      search:txt},
+                  dataType:"text",
+                  success:function(data)
+                  {
+                      alert("جۆری پارەکەت گؤردرا");
+                  }
+
+              });
+
+
+
+          });
+
+      });
+
+  </script>
+
+
+
+
+  <section class="ftco-section">
       
 			<div class="container-fluid px-4">
 				<div class="row">

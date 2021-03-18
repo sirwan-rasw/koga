@@ -48,7 +48,7 @@ include "header.php";
 // include "func.php";
 // include "db.php";
 
-$_SESSION["type_price"]="dinar";
+$_SESSION["type_price"]="dolar";
 
 $pricing=$_SESSION["type_price"];
 
@@ -205,7 +205,7 @@ $row1=mysqli_fetch_assoc($res1);
  
 <br>
 <div align="center">
-<label for="" align ="center"> <p style="font-size: 20px; color: black;"> کۆی پارەی دراوی ئەم قائیمانەی سەرەوە  </p></label>
+<label for="" align ="center"> <p style="font-size: 20px; color: black;"> کۆی پارەی قەرزی ئەم قائیمانەی سەرەوە  </p></label>
 
 <input style="font-size: 20px; color: black;" align="center" id="maxs" disabled value="
 

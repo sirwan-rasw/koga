@@ -249,7 +249,7 @@ $pricing=$_SESSION["type_price"];
             ?>
             <td style="color: black; font-size: 20px;"><?php echo $row["other_info_s"]; ?></td>
 
-            <td style="color: black; font-size: 20px;"> <button onclick="pdf_view(<?php echo $row['id_s'] ?>)"> بینینی فایلی دەرمانەکان  </button></td>
+            <td style="color: black; font-size: 20px;"> <button onclick="pdf_view(<?php echo $row['id_s'] ?>)"> <i class="fas fa-file-signature"></i>  </button></td>
             <td><button style="color: black; font-size: 20px; background-color: green;" onclick="deleting(<?php echo $row['id_s']; ?>);">سڕینەوە  </button></td>
 
 

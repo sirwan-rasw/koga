@@ -49,9 +49,14 @@
 <?php
 include "header.php";
 
-$_SESSION["type_price"]="dolar";
+//$_SESSION["type_price"]="dolar";
 
 $pricing=$_SESSION["type_price"];
+
+
+if ($pricing == "dolar")
+{
+
 
 ?>
 
@@ -59,11 +64,28 @@ $pricing=$_SESSION["type_price"];
     <label style="font-size: 20px;" for=""> دۆلار  </label>    
     <input style="font-size: 20px; width: 20px; height: 20px;" name="c1" type="checkbox" value="dolar" id="c1" checked>
 
+
     <label style="font-size: 20px" for=""> دینار </label>
     <input style="font-size: 20px ;width: 20px; height: 20px;" name="c1" type="checkbox" value="dinar" id="c2">
     </div>
 <?php
+}else{
 
+    ?>
+
+
+<div align="center">
+    <label style="font-size: 20px;" for=""> دۆلار  </label>
+    <input style="font-size: 20px; width: 20px; height: 20px;" name="c1" type="checkbox" value="dolar" id="c1">
+
+
+    <label style="font-size: 20px" for=""> دینار </label>
+    <input style="font-size: 20px ;width: 20px; height: 20px;" name="c1" type="checkbox" value="dinar" id="c2" checked>
+</div>
+
+<?php
+
+}
 
 if($type=="koga") {
 

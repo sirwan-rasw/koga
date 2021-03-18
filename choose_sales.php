@@ -37,6 +37,8 @@ include "func.php";
     <!-- <script src="../js/jquery-3.3.1.min.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
+<!--    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>-->
+
 
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"> -->
 
@@ -365,14 +367,14 @@ comment -->
                     if($type=="koga")
                     {
 
-                      $query1 = "Select COUNT(id_s) from sales where id_comp='$id_comp' and wasl=0 and state=0 and id_koga='$id_koga'";
+                      $query1 = "Select COUNT(id_s) from sales where id_comp='$id_comp' and wasl=0 and state=0 and sent='0' and id_koga='$id_koga'";
                       $res1=mysqli_query($conn, $query1);
                       $row1=mysqli_fetch_assoc($res1);
 
                       $r=$row1["COUNT(id_s)"];
                     }else {
 
-                        $query1 = "Select COUNT(id_s) from sales where id_comp='$id_comp' and wasl=0 and state=0 and id_koga='$id_koga'";
+                        $query1 = "Select COUNT(id_s) from sales where id_comp='$id_comp' and wasl=0 and state=0 and sent='0' and id_koga='$id_koga'";
                         $res1=mysqli_query($conn, $query1);
                         $row1=mysqli_fetch_assoc($res1);
   
@@ -435,7 +437,22 @@ comment -->
 							</div>
 							<div class="col-lg-4" id="no"  onclick="window.location='sales.php'">
 								<div class="services-2 d-flex">
-									<div class="icon mt-2 d-flex justify-content-center align-items-center"><span class="flaticon-diploma"></span></div>
+
+                                    <?php
+                                    if($r>0)
+                                    {
+                                    ?>
+                                    <p id="div1" style="background-color: #c82333; color: white; height: 10%; width: 5%; border-bottom-right-radius: 10px; text-align: center"><?php echo $r;?></p>
+
+                                    <?php
+                                    }else{
+                                        ?>
+                                        <p id="div1" style="background-color: #c82333; color: white; height: 10%; width: 5%; border-bottom-right-radius: 10px; text-align: center"></p>
+                                    <?php
+                                    }
+                                    ?>
+
+                                    <div class="icon mt-2 d-flex justify-content-center align-items-center"><span class="flaticon-diploma"></span></div>
 									<div class="text pl-3">
 										<h3>هاتوو (وەرنەگیراوو)</h3>
 										<p>ئەم لیستە تایبەتە بەو قائیمانەی کە شریکە دایناون بەڵام هەتا ئێستا بە دەست کۆگا نەگەشتوەو جرد نەکراوە .</p>
@@ -490,7 +507,9 @@ comment -->
 
                             <div class="col-lg-4" id="no" onclick="window.location='invoices.php'">
 								<div class="services-2 d-flex">
-									<div class="icon mt-2 d-flex justify-content-center align-items-center"><span class="flaticon-books"></span></div>
+
+
+									<div class="icon mt-2 d-flex justify-content-center align-items-center">   <span class="flaticon-books"> </span></div>
 									<div class="text pl-3">
 										<h3>بینینی وەصل قبضەکان </h3>
 										<p>لەم لیستەدا هەموو ئەو وەصل قەبضانەی شریکە وەری گرتوەو وەری نەگرتوە دەبینرێت </p>
@@ -657,6 +676,26 @@ $row1=mysqli_fetch_assoc($res1);
     include "footer.php";
 
         ?>
+<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
 
+<script>
+
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('77c215ea00d08d2819e5', {
+        cluster: 'ap2'
+    });
+
+    var channel = pusher.subscribe('my-channel');
+    channel.bind('my-event', function(data) {
+
+        $.ajax({url: "notif.php", success: function(result){
+                $("#div1").html(result);
+            }});
+
+        // alert(JSON.stringify(data));
+    });
+</script>
 </body>
 </html>

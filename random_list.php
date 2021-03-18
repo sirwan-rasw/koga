@@ -337,7 +337,7 @@ if($_SESSION["type"]=="koga")
 }
 ?>
 <?php
-if($_SESSION["type"]=="company" && $row["states_skala"]=='0' || $row["states_koga"]=='0' || $row["states_comp"]=='0')
+if($_SESSION["type"]=="company" && $row["states_skala"]=='0')
 {
 ?>
 <td><button class="btn btn-secondary" onclick=modal_price_show(<?php echo $row["id_skala"];?>)>نرخ دانان بۆ سکاڵا   </button></td>
@@ -472,6 +472,7 @@ data:{
     {
         $("#my_modal_price").modal("hide");
         $("#after_"+id).html(price);
+        window.location="random_list.php";
     }else{
         alert("pass is "+response)
     }
