@@ -14,7 +14,7 @@ $type=$_SESSION["type"];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>header page</title>
-    <html lang="en" dir="rtl">
+
 
 
     <title>Fox University - Free Bootstrap 4 Template by Colorlib</title>
@@ -231,6 +231,7 @@ include "db.php";
     unset($_SESSION["id_comp"]);
           ?>
             <h1 class="mb-2 bread">شریکەکان  </h1>
+              <div style="font-weight: bold; font-size: 30px;background-color: #117a8b">
 
             <?php
   }else{
@@ -239,6 +240,8 @@ include "db.php";
 
     ?>
                 <h1 class="mb-2 bread">کۆگاکان </h1>
+
+        <div style="font-weight: bold; font-size: 30px;background-color: #117a8b;">
 
     <?php
   }
@@ -258,14 +261,15 @@ include "db.php";
 
 
                         ?>
+                                    <h2 style="font-size: 30px;font-weight: bold;">لێرەوە دەتوانی جۆری پارەکەت دیاری بکەی</h2>
 
                                       <div align="center">
-                                          <label style="font-size: 20px;" for=""> دۆلار  </label>
+                                          <label style="font-size: 25px;" for=""> دۆلار  </label>
                                           <input style="font-size: 20px; width: 20px; height: 20px;" name="c1" type="checkbox" value="dolar" id="c1" checked>
 
 
-                                          <label style="font-size: 20px" for=""> دینار </label>
-                                          <input style="font-size: 20px ;width: 20px; height: 20px;" name="c1" type="checkbox" value="dinar" id="c2">
+                                          <label style="font-size: 25px" for=""> دینار </label>
+                                          <input style="font-size: 25px ;width: 20px; height: 20px;" name="c1" type="checkbox" value="dinar" id="c2">
                                       </div>
                                       <?php
                         }else{
@@ -273,20 +277,21 @@ include "db.php";
     ?>
 
 
-              <div align="center">
-                  <label style="font-size: 20px;" for=""> دۆلار  </label>
-                  <input style="font-size: 20px; width: 20px; height: 20px;" name="c1" type="checkbox" value="dolar" id="c1">
+                                      <div align="center">
+                                          <label style="font-size: 20px;" for=""> دۆلار  </label>
+                                          <input style="font-size: 20px; width: 20px; height: 20px;" name="c1" type="checkbox" value="dolar" id="c1">
 
 
-                  <label style="font-size: 20px" for=""> دینار </label>
-                  <input style="font-size: 20px ;width: 20px; height: 20px;" name="c1" type="checkbox" value="dinar" id="c2" checked>
-              </div>
+                                          <label style="font-size: 20px" for=""> دینار </label>
+                                          <input style="font-size: 20px ;width: 20px; height: 20px;" name="c1" type="checkbox" value="dinar" id="c2" checked>
+                                      </div>
 
-              <?php
+                                      <?php
 
 }
 ?>
 
+        </div>
 
                         <i></i></a></span> <span> <i class="ion-ios-arrow-forward"></i></span></p>
           </div>

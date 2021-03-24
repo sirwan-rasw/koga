@@ -4,6 +4,7 @@ include "header.php";
 
 
 $anjam["sum"]=0;
+$total=0;
 
 $pricing=$_SESSION["type_price"];
 
@@ -159,9 +160,11 @@ $res=mysqli_query($conn,$sql);
 
 //$leng=mysqli_fetch_lengths($res);
 //print_r($leng);
+$total=0;
 
 while($row=mysqli_fetch_array($res))
 {
+
 
     $id_sales[]=$row["list_num"];
     
@@ -217,7 +220,7 @@ while($row=mysqli_fetch_array($res))
             }else{
 
                 ?>
-           <td style="border: black 2px solid; padding: 6px; margin: 6px"><?php $anjam= ($row["draw"])*(100-$d)/100; echo number_format($anjam); ?></td>
+           <td style="border: black 2px solid; padding: 6px; margin: 6px"><?php $anjam["sum"]= ($row["draw"])*(100-$d)/100; echo number_format($anjam["sum"]); ?></td>
 
                 <?php
 
@@ -243,8 +246,10 @@ while($row=mysqli_fetch_array($res))
 
 
             <?php
-
+    $total+=$anjam["sum"];
             }
+
+
 
             for($i=0 ; $i<count($id_sales) ; $i++)
             {
@@ -259,6 +264,7 @@ while($row=mysqli_fetch_array($res))
 
 
 ?>
+
 </tbody>
 
 
@@ -269,32 +275,7 @@ while($row=mysqli_fetch_array($res))
 </div>
 
 </div>
-
-
-
-
 <?php
-
-    echo array_sum($anjam);
-    echo "<br>";
-
-
-
-    if($skala!=0) {
-        $sql_skala_value = "select price_skala from test1 where id_skala='$skala' limit 1";
-        $qu_value = mysqli_query($conn, $sql_skala_value);
-        $row_value = mysqli_fetch_array($qu_value);
-
-        echo "<br>";
-
-
-        echo $ko = $anjam1 - $row_value["price_skala"];
-
-    }else{
-        echo  "هیچ سکاڵایەک تۆمار نەکراوە ";
-        echo "<br>";
-//        echo  $ko=$anjam1;
-    }
 
 $sql_pass="SELECT password from companies where id='$id_comp'";
             $qu_sql_pass=mysqli_query($conn,$sql_pass);
@@ -314,12 +295,18 @@ if($row1["state_wargrtn"]==1)
 {
 
     echo "ئەم قائیمانە پێشتر واسڵ کراون ";
-   
+
+
+
+
 
 }else{
-?>
-<button onclick="yess()" style="margin-right: 50%; margin-left: 50%;" class="btn btn-success">واسڵ کردنی قائیمەکانی سەرەوە </button>
 
+    echo "<br>";
+?>
+        <div class="container" style="width: 100%" align="center">
+<button id="bt_hov" onclick="yess()" style="width: 50%;text-align: center; background-color: #1e7e34; font-weight: bold;color: black;">واسڵ کردنی قائیمەکانی سەرەوە </button>
+        </div>
 <?php
 }
 
@@ -368,6 +355,7 @@ function yess()
     }
     function shkanawa()
     {
+        var zh_psula="<?php echo $id; ?>";
 
         // var pass_v="<?php $pass_v ?>";
 
@@ -515,14 +503,15 @@ rowID:rowID
 <th>بڕی پارەی قائیمە  </th>
 <th>بەرواری کردنی ئەم پسوڵەیە </th>
 <th>ژمارەی سکاڵآ</th>
-    <th>ڕێژەی داشکاندن</th>
+    <th>شکانەوە بۆ دینار</th>
 <?php
     if($pricing=="dolar")
     {
 
-    
+
  ?>
-            <th>شکانەوە بۆ دینار</th>
+
+        <th>ڕێژەی داشکاندن</th>
 
             <?php
     }
@@ -587,7 +576,7 @@ while($row=mysqli_fetch_array($res))
             ?>
 
 <td style="border: black 2px solid"><?php echo $row["date"];  ?></td>
-<td style="border: black 2px solid"><?php echo $row["id_skalakan"];  ?></td>
+<td style="border: black 2px solid"><?php echo $skala=$row["id_skalakan"];  ?></td>
 
 <?php
 if($pricing=="dolar")
@@ -609,14 +598,14 @@ if($pricing=="dolar")
 
             ?>
 
-            <td style="border: black 2px solid"><?php $anjam= ($row["draw"]* $g)*(100-$d)/100; echo number_format($anjam);  ?></td>
+            <td style="border: black 2px solid"><?php $anjam["sum"]= ($row["draw"]* $g)*(100-$d)/100; echo number_format($anjam["sum"]);  ?></td>
 
 
             <?php
             }else{
 
                 ?>
-           <td style="border: black 2px solid"><?php $anjam= ($row["draw"])*(100-$d)/100; echo number_format($anjam);  ?></td>
+           <td style="border: black 2px solid"><?php $anjam["sum"]= ($row["draw"])*(100-$d)/100; echo number_format($anjam["sum"]);  ?></td>
 
                 <?php
 
@@ -657,9 +646,11 @@ else{
     <td style="background-color: green; color: black; font-size: 20px; border: black 2px solid">  <?php echo  "واسڵ کراوە و ناگەڕەێتەوە "; ?></td>
 
     <?php
+
 }
 
 
+$total+=$anjam["sum"];
 
 ?>
 
@@ -711,7 +702,56 @@ else{
     
 
 
+
+
+<div class="container" style="border-bottom-left-radius: 20px;border-bottom-right-radius: 20px;padding: 4px;margin-top: 4px; margin-bottom: 5px">
+
+<div class="row" align="center" style="background-color: #0f6674; color: black;font-size: 20px; font-weight:bold;border-bottom-left-radius: 20px;border-bottom-right-radius: 20px">
+
+
+        <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6" style="background-color: #95999c">
 <?php
+
+//    echo array_sum($anjam);
+
+    echo "کۆی پارەی دراو " . number_format($total);
+
+
+
+    if($skala!=0) {
+        $sql_skala_value = "select price_skala,gorin from test1,test where test1.id_skala='$skala' limit 1";
+        $qu_value = mysqli_query($conn, $sql_skala_value);
+        $row_value = mysqli_fetch_array($qu_value);
+
+        echo "<br>";
+
+
+//        echo "نرخی سکاڵا".$row_value["price_skala"];
+//
+//        echo "گۆڕینەکەی".$row_value["gorin"];
+
+        if($_SESSION["type_price"]=="dolar") {
+            echo "نرخی سکاڵاکە بە دینار " . number_format($skala_gorin = $row_value["price_skala"] * $row_value["gorin"]);
+            echo "<br>";
+            echo "کۆی پارەی واسڵ بە دیناری عێراقی " . number_format($kota = $total - $skala_gorin);
+
+        }else{
+
+            echo "نرخی سکاڵاکە بە دینار " . number_format($skala_gorin = $row_value["price_skala"]);
+            echo "<br>";
+            echo "کۆی پارەی واسڵ بە دیناری عێراقی " . number_format($kota = $total - $skala_gorin);
+
+
+        }
+
+    }else{
+        echo "<br>";
+        echo  "هیچ سکاڵایەک تۆمار نەکراوە ";
+
+//        echo  $ko=$anjam1;
+    }
+
+
 
 
 $query1 = "Select SUM(price) from test where zh_psula='$id'";
@@ -737,16 +777,14 @@ $qarz_taza=0;
 
   ?>
 
-    <div align="center">
 
-    <div style="font-size: 17px; color: black;" class="row" >
+</div>
 
-    <div class="col-md-12">
-
+    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
   
-  <label for="" style="color: red;"> <strong> کۆی پارەی ئەم پسوڵەیە </strong></label> 
+  <label for="" style="color: black;"> <strong> کۆی پارەی ئەم پسوڵەیە </strong></label>
 
-  <input style="font-size: 18px; color: black;" disabled value="<?php
+  <input style="font-size: 18px; color: black; float: left;" disabled value="<?php
 
   if($pricing=="dinar")
   {
@@ -776,9 +814,9 @@ $qarz_taza=0;
    ?>">
   <br>
 
-<label for="" style="color: brown;"> <strong> کۆی پارەی دراو بۆ ئەم پسوڵەیە</strong>  </label>
+<label for="" style="color: black;"> <strong> کۆی پارەی دراو بۆ ئەم پسوڵەیە</strong>  </label>
 
-<input style="font-size: 18px; color: black;" disabled value="<?php 
+<input style="font-size: 18px; color: black; float: left" disabled value="<?php
 
 if($pricing=="dinar")
   {
@@ -809,9 +847,9 @@ echo money_format("%10n",$row2["SUM(draw)"]);
 
 <br>
 
-<label for="" style="color: green;">  <strong>قەرزی ماوەی ئەم قائیمەیە </strong>  </label>
+<label for="" style="color: black;">  <strong>قەرزی ماوەی ئەم قائیمەیە </strong>  </label>
 
-<input style="font-size: 18px; color: black;" disabled value="<?php
+<input style="font-size: 18px; color: black; float: left;" disabled value="<?php
 
 if($pricing=="dinar")
 {
@@ -839,11 +877,11 @@ echo money_format("%10n",$qarz_this);
 }
 ?>">
 
+    </div>
+
 </div>
     </div>
 
-
-</div>
 
 
 
@@ -886,6 +924,7 @@ echo money_format("%10n",$qarz_this);
 //         } );
 //     }
 // });
+
 
 
 

@@ -16,7 +16,10 @@
     <?php
  include "header.php";
 
- if($type=="company")
+    require __DIR__ . '/vendor/autoload.php';
+
+
+    if($type=="company")
 {
 ?>
 <script>window.location="deps.php";</script>
@@ -80,7 +83,39 @@ $id_comp=$_SESSION["id_comp"];
                 // Upload file to server 
                 if(move_uploaded_file($_FILES["files"]["tmp_name"][$key], $targetFilePath)){ 
                     // Image db insert sql 
-                    $insertValuesSQL =$fileName; 
+                    $insertValuesSQL =$fileName;
+
+                    //zhmaray skalakan ka hatwna
+
+
+
+                    $options = array(
+                        'cluster' => 'ap2',
+                        'useTLS' => true
+                    );
+                    $pusher = new Pusher\Pusher(
+                        'a7e82fd206ad2baedfdd',
+                        'c75065968016c33916c3',
+                        '1174857',
+                        $options
+                    );
+
+                    $query1 = "Select COUNT(id) from test1 where id_comp='$id_comp' and states_comp='0' and states_skala='0' and id_koga='$id_koga'";
+                    $res1=mysqli_query($conn, $query1);
+                    $row1=mysqli_fetch_assoc($res1);
+
+                    $r=$row1["COUNT(id)"];
+
+
+
+                    $data['message'] =$r;
+                    $pusher->trigger('my-channel', 'my-event', $data);
+
+
+
+
+                    //end skala zhmara
+
 
 
                     $sql=mysqli_prepare($conn,"INSERT INTO test1(id,id_skala,image,date,tb_koga,id_koga,id_comp) VALUES ('',?,?,now(),?,?,?)");
@@ -271,5 +306,21 @@ return n;
 include "footer.php";
 
 ?>
+
+    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+    <script>
+
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
+
+        var pusher = new Pusher('a7e82fd206ad2baedfdd', {
+            cluster: 'ap2'
+        });
+
+        var channel = pusher.subscribe('my-channel');
+        channel.bind('my-event', function(data) {
+            // alert(JSON.stringify(data));
+        });
+    </script>
 </body>
 </html>

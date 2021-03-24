@@ -1,12 +1,4 @@
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-  
     <?php
     include "header.php";
 
@@ -103,13 +95,13 @@
 
     
 <style>
-#tb{
-    cursor: pointer;
-    max-width:20px ;
-    max-height:10px;
-    overflow-x: hidden;
-}
-table, tr, td {
+    #tb{
+        cursor: pointer;
+        max-width:20px ;
+        max-height:10px;
+        overflow-x: hidden;
+    }
+    table, tr, td {
   border: 1px solid black;
   color: black;
   font-size: 20px;
@@ -183,10 +175,10 @@ table, tr {
 
 <div class="container">
 <div class="row">
-<div class="col-md-12 col-sm-6 col-xs-6">
+<div class="col-md-12 col-sm-12 col-xs-12">
 
 
-
+<div class="table-responsive">
 
 <table style="width: 100%;" class="display compact" id="example">
 
@@ -208,8 +200,8 @@ if($_SESSION["type"]=="koga")
 
 ?>
 
-<th>زیاد کردنی وێنەی زیاتر بۆ ئەم سکاڵایە</th>
-<th>وەرگرتنەوەی نرخی سکاڵا</th>
+<th>زیادکردنی وێنە </th>
+<th>ڕەزامەندی</th>
 <?php
 }
 ?>
@@ -217,7 +209,7 @@ if($_SESSION["type"]=="koga")
 if($_SESSION["type"]=="company")
 {
 ?>
-<th>نرخ دانان بۆ سکاڵاکە   </th>
+<th>جێگیر کردنی نرخ </th>
 
 <?php
 }
@@ -282,7 +274,7 @@ while($row=mysqli_fetch_array($res))
     <?php
     if($row["states_comp"]==0) {
     ?>
-    <td style="background-color: red; color: black; font-size: 20px;"> <?php echo "شریکە نرخی دانەناوە" ?></td>
+    <td style="background-color: red; color: black; font-size: 20px;"> <?php echo "نرخ دانەنراوە" ?></td>
     <?php
     }
     else{
@@ -309,43 +301,46 @@ while($row=mysqli_fetch_array($res))
 
     ?>
 
-<td><button class="btn btn-success" onclick="save(<?php echo $row['id_skala'];?>)">بینینی وێنەکانی ئەم قائیمەیە</button></td>
+<td><button style="background-color: #7abaff" onclick="save(<?php echo $row['id_skala'];?>)">وێنەکان</button></td>
 <?php
 if($_SESSION["type"]=="koga")
 {
 
 ?>
-<td><button class="btn btn-success" onclick="add_skala(<?php echo $row['id_skala'];?>)">زیادکردنی سکاڵای تر بۆ ئەم کۆدە</button></td>
+<td><button style="background-color: #0f6674" onclick="add_skala(<?php echo $row['id_skala'];?>)">زیادکردنی سکاڵا</button></td>
 <?php
     if($row["states_koga"]==0)
     {
         ?>
 
-<td><button onclick="resive(<?php echo $row['id_skala'] ?>)">وەرگرتنەوە</button></td>
+<td><button style="background-color: #c82333;color: #0b0b0b" onclick="resive(<?php echo $row['id_skala'] ?>)">وەرگرتنەوە</button></td>
         <?php
 
     }else{
 
         ?>
 
-        <span class="icon">  </span>
+       <td> <p style="background-color: #1e7e34">وەرگیراوە</p> </td>
 
         <?php
     }
 ?>
 <?php
 }
-?>
-<?php
-if($_SESSION["type"]=="company" && $row["states_skala"]=='0')
+else if($_SESSION["type"]=="company" && $row["states_skala"]=='0')
 {
 ?>
-<td><button class="btn btn-secondary" onclick=modal_price_show(<?php echo $row["id_skala"];?>)>نرخ دانان بۆ سکاڵا   </button></td>
+<td><button class="btn btn-secondary" onclick=modal_price_show(<?php echo $row["id_skala"];?>)>نرخ دابنێ</button></td>
 
 <?php
 
 
-}
+}else if ($row["states_skala"]=='1' && $_SESSION["type"]=="company"){
+    ?>
+
+    <td><p>تەواو بوو</p></td>
+<?php
+    }
 ?>
 
 

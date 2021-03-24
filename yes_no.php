@@ -110,7 +110,7 @@ $name=$_SESSION["name"];
     <div class="row">
         <div class="col-md-12 col-lg-12 col-xl-12">
             <div class="table-responsive">
-            <table id="example" class="display compact" style="width:100% ; border-top-left-radius: 40px; border-top-right-radius: 40px;">
+            <table id="example" class="  display compact" style=" border: black 3px solid; width:100% ; border-top-left-radius: 40px; border-top-right-radius: 40px;">
                 <thead>     
 
                     <tr class="titleTr" align="center">

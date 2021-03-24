@@ -1,49 +1,3 @@
-<!--<!DOCTYPE html>-->
-<!---->
-<!---->
-<!--<html lang="en" dir="rtl">-->
-<!---->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<!--    <title>Document</title>-->
-<!--     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
-<!--     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
-<!--     <script src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
-<!-- <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>-->
-<!-- <script type="text/javascript"  src=" https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script> -->
-<!--  -->-->
-<!--     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>-->
-<!---->
-<!--    <link href='https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900' rel='stylesheet' type='text/css'>-->
-<!---->
-<!--     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"> -->
-<!---->
-<!--    <link rel="stylesheet" href="style.css">-->
-<!---->
-<!--    <style>-->
-<!---->
-<!--table, td {-->
-<!--  font-size: 20px;-->
-<!--}-->
-<!---->
-<!--table, th {-->
-<!--    border: 1px solid black;-->
-<!---->
-<!--  color: black;-->
-<!--  font-size: 20px;-->
-<!--}-->
-<!--table, tr {-->
-<!---->
-<!--  color: black;-->
-<!--  font-size: 20px;-->
-<!--}-->
-<!--    </style>-->
-<!---->
-<!---->
-<!---->
-<!---->
-<!--</head>-->
 
 
 <?php
@@ -113,7 +67,7 @@ if($type=="koga") {
     <div class="col-md-12 col-lg-12 col-xl-12">
     
    <div class="table-responsive">
-    <table id="example"  class="display compact" style="width:100%; border-top-left-radius: 40px; border-top-right-radius: 40px; color: black;">
+    <table id="example"  class="display compact " style=" border: black 3px solid; width:100%; border-top-left-radius: 40px; border-top-right-radius: 40px; color: black;">
 
     <thead>
         <tr class="titleTr">
@@ -262,10 +216,12 @@ $row2=mysqli_fetch_assoc($res2);
  
 <br>
 
-<div align="center">
-<label for="" style="font-size: 20px;text-emphasis-style: dot">کۆی پارەی دراوی ئەم قائیمانەی سەرەوە  </label>
+    <div class="container">
 
-<input id="maxs" disabled value="
+<div align="center" style="background-color: darkcyan; color: black; text-align: center; width: 100%; height: 50px; border:1px black solid; padding: 2px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; font-size: 10px">
+<label for="" style="font-size: 14px;text-emphasis-style: dot">کۆی پارەی دراوی ئەم قائیمانەی سەرەوە  </label>
+
+<input id="maxs" style="color: black; font-size: 20px; padding: 2px" disabled value="
 
 <?php
 
@@ -302,6 +258,8 @@ if($pricing=="dolar")
 
 
 </div>
+
+    </div>
 
 <script>
 

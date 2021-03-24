@@ -136,6 +136,14 @@ include "db.php";
         /*}*/
 
 
+        /*.labels{*/
+        /*   color: black;*/
+        /*    background-color: #95999c;*/
+        /*    font-weight: bold;*/
+        /*}*/
+
+
+
 
     @font-face {
             font-family: kurd;
@@ -149,7 +157,12 @@ include "db.php";
          {
             font-family: kurd;
         }
+        #bt_hov:hover{
+            transition-duration: 1s;
+            cursor: pointer;
+            background-color: #71dd8a;
 
+        }
      #send_ids:hover{
          background-color: green;
          font-size: 50px;

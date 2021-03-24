@@ -301,7 +301,8 @@ $target_file="uploades/";
                         
                         <div class="d-md-flex ">
                                 <div class="form-group ">
-                                    <input type="number" class="form-control " max="99999999999" min="1" style="font-size: 20px; " name="num_qaim" placeholder="ژمارەی قائیمە  " required>
+<!--                                    <label for="" class="labels">ژمارەی ئەو قائیمەی دەینێری لێرە بینوسە</label>-->
+                                    <input type="number" class="form-control " max="99999999999" min="1" style="font-size: 20px; border: black 2px solid;" name="num_qaim" placeholder="ژمارەی قائیمە  " required>
                                 </div>
 
                             </div>
@@ -329,7 +330,7 @@ $target_file="uploades/";
 
                             <div class="d-md-flex " >
                                 <div class="form-group " style="display: none;" id="dinar">
-                                    <input type="number" max="99999999999" min="1" class="form-control paras" style="font-size: 20px; " name="price_qaim" placeholder="بڕی پارەی قائیمە  بە دینار" required id="price_qaim_dinar">
+                                    <input type="text" max="99999999999" min="1" class="form-control paras" style="font-size: 20px; " name="price_qaim" placeholder="بڕی پارەی قائیمە  بە دینار" required id="price_qaim_dinar">
                                 </div>
 
                             </div>
@@ -337,7 +338,7 @@ $target_file="uploades/";
 
                             <div class="d-md-flex ">
                                 <div class="form-group " style="display: none;" id="dolar">
-                                    <input type="number" max="99999999999" min="1" class="form-control para" style="font-size: 20px; " name="price_qaim" placeholder="بڕی پارەی قائیمە دۆلار " required id="price_qaim_dolar">
+                                    <input type="text" max="99999999999" min="1" class="form-control paras" style="font-size: 20px; " name="price_qaim" placeholder="بڕی پارەی قائیمە دۆلار " required id="price_qaim_dolar">
                                 </div>
 
                             </div>

@@ -372,6 +372,29 @@ comment -->
                       $row1=mysqli_fetch_assoc($res1);
 
                       $r=$row1["COUNT(id_s)"];
+
+                      //for wasl nakrawakan
+
+                        $query2 = "Select COUNT(id_s) from sales where id_comp='$id_comp' and wasl=0 and state=1 and sent='1' and id_koga='$id_koga'";
+                        $res2=mysqli_query($conn, $query2);
+                        $row2=mysqli_fetch_assoc($res2);
+
+                        $r2=$row2["COUNT(id_s)"];
+
+
+                        //skala
+
+
+
+                        $query3 = "Select COUNT(id) from test1 where id_comp='$id_comp' and states_comp='0' and states_skala='0' and id_koga='$id_koga'";
+                        $res3=mysqli_query($conn, $query3);
+                        $row3=mysqli_fetch_assoc($res3);
+
+                        $r3 = $row3["COUNT(id)"];
+
+
+
+
                     }else {
 
                         $query1 = "Select COUNT(id_s) from sales where id_comp='$id_comp' and wasl=0 and state=0 and sent='0' and id_koga='$id_koga'";
@@ -379,6 +402,23 @@ comment -->
                         $row1=mysqli_fetch_assoc($res1);
   
                         $r=$row1["COUNT(id_s)"];
+
+                        //wasl nakrawakan
+
+
+                        $query2 = "Select COUNT(id_s) from sales where id_comp='$id_comp' and wasl=0 and state=1 and sent='1' and id_koga='$id_koga'";
+                        $res2=mysqli_query($conn, $query2);
+                        $row2=mysqli_fetch_assoc($res2);
+
+                        $r2=$row2["COUNT(id_s)"];
+
+                        $query3 = "Select COUNT(id) from test1 where id_comp='$id_comp' and states_comp='0' and states_skala='0' and id_koga='$id_koga'";
+                        $res3=mysqli_query($conn, $query3);
+                        $row3=mysqli_fetch_assoc($res3);
+
+                        $r3 = $row3["COUNT(id)"];
+
+
                       }
                      
 ?>
@@ -505,17 +545,7 @@ comment -->
 								</div>
                             </div>
 
-                            <div class="col-lg-4" id="no" onclick="window.location='invoices.php'">
-								<div class="services-2 d-flex">
 
-
-									<div class="icon mt-2 d-flex justify-content-center align-items-center">   <span class="flaticon-books"> </span></div>
-									<div class="text pl-3">
-										<h3>بینینی وەصل قبضەکان </h3>
-										<p>لەم لیستەدا هەموو ئەو وەصل قەبضانەی شریکە وەری گرتوەو وەری نەگرتوە دەبینرێت </p>
-									</div>
-								</div>
-                            </div>
 
 
                             <!-- <div class="col-lg-6" id="no" onclick="window.location='insert_skalas.php'"> -->
@@ -561,20 +591,52 @@ comment -->
 
 
 
-
-							<div class="col-lg-4" id="no" onclick="window.location='invoices.php'">
-								<div class="services-2 d-flex">
-									<div class="icon mt-2 d-flex justify-content-center align-items-center"><span class="flaticon-jigsaw"></span></div>
-									<div class="text pl-3">
-										<h3>وەصڵ قەبضەکان </h3>
-										<p>لێرەوە شریکە دەتوانێت سەیری هەموو ئەو وەصل قەبزانە بکاتە کە لەلایەن کۆگانەوە بۆی هاتون  </p>
-									</div>
-								</div>
-                            </div>
-
                         <?php
                                     }
                         ?>
+
+
+
+
+
+                            <div class="col-lg-4" id="no" onclick="window.location='invoices.php'">
+                                <div class="services-2 d-flex">
+
+                                    <?php
+                                    if($r2>0)
+                                    {
+                                        ?>
+                                        <p id="div2" style="background-color: #c82333; color: white; height: 10%; width: 5%; border-bottom-right-radius: 10px; text-align: center"><?php echo $r2;?></p>
+
+                                        <?php
+                                    }else{
+                                        ?>
+                                        <p id="div2" style="background-color: #c82333; color: white; height: 10%; width: 5%; border-bottom-right-radius: 10px; text-align: center"></p>
+                                        <?php
+                                    }
+                                    ?>
+
+
+
+                                    <div class="icon mt-2 d-flex justify-content-center align-items-center"><span class="flaticon-jigsaw"></span></div>
+                                    <div class="text pl-3">
+                                        <h3>وەصڵ قەبضەکان </h3>
+                                        <p>لێرەوە شریکە دەتوانێت سەیری هەموو ئەو وەصل قەبزانە بکاتە کە لەلایەن کۆگانەوە بۆی هاتون  </p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <?php
+
+
+//
+//                            if($row3["count(id_skala)"]>0) {
+//
+//
+//
+//                            }
+                            ?>
 
 
 
@@ -582,7 +644,24 @@ comment -->
                             <div class="col-lg-4" id="no" onclick="window.location='random_list.php'">
 
 								<div class="services-2 d-flex">
-									<div class="icon mt-2 d-flex justify-content-center align-items-center"><span class="flaticon-teacher"></span></div>
+
+                                    <?php
+                                    if($r3>0)
+                                    {
+                                        ?>
+                                        <p id="div3" style="background-color: #c82333; color: white; height: 10%; width: 5%; border-bottom-right-radius: 10px; text-align: center"><?php echo $r3;?></p>
+
+                                        <?php
+                                    }else{
+                                        ?>
+                                        <p id="div3" style="background-color: #c82333; color: white; height: 10%; width: 5%; border-bottom-right-radius: 10px; text-align: center"></p>
+                                        <?php
+                                    }
+                                    ?>
+
+
+
+                                    <div class="icon mt-2 d-flex justify-content-center align-items-center"><span class="flaticon-teacher"></span></div>
 									<div class="text pl-3">
 										<h3>سکاڵاکان</h3>
 										<p>بینین و زیادکردن و نرخ دانا بۆ هەر سکاڵایاک لێرە ببینە </p>
@@ -694,8 +773,76 @@ $row1=mysqli_fetch_assoc($res1);
                 $("#div1").html(result);
             }});
 
+        //bo wasl nakrawakan
+        //
+        // $.ajax({url: "notif_not_wasl.php", success: function(result){
+        //         $("#div2").html(result);
+        //     }});
+
         // alert(JSON.stringify(data));
     });
 </script>
+
+<!--//wasl nakrawa-->
+
+<script>
+
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('77c215ea00d08d2819e5', {
+        cluster: 'ap2'
+    });
+
+    var channel = pusher.subscribe('my-channel');
+    channel.bind('my-event', function(data) {
+
+        // $.ajax({url: "notif.php", success: function(result){
+        //         $("#div1").html(result);
+        //     }});
+
+        // bo wasl nakrawakan
+
+        $.ajax({url: "notif_not_wasl.php", success: function(result){
+                $("#div2").html(result);
+            }});
+
+        // alert(JSON.stringify(data));
+    });
+</script>
+
+
+<!--skala-->
+
+<script>
+
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('a7e82fd206ad2baedfdd', {
+        cluster: 'ap2'
+    });
+
+    var channel = pusher.subscribe('my-channel');
+    channel.bind('my-event', function(data) {
+
+        // $.ajax({url: "notif.php", success: function(result){
+        //         $("#div1").html(result);
+        //     }});
+
+        // bo wasl nakrawakan
+
+        $.ajax({url: "notif_skala.php", success: function(result){
+                $("#div3").html(result);
+            }});
+
+        // alert(JSON.stringify(data));
+    });
+</script>
+
+
+
+
+
 </body>
 </html>

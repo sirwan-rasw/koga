@@ -98,7 +98,7 @@ $pricing=$_SESSION["type_price"];
     <div class="row">
         <div class="col-md-12">
             <div class="table-responsive">
-            <table id="example"  class="compact table " style="width:100%">
+            <table id="example"  class=" display compact" style="border: black 3px solid; width:100% ; border-top-left-radius: 40px; border-top-right-radius: 40px;">
 
 <thead>
     <tr class="titleTr">
@@ -350,12 +350,13 @@ function yess(rowID,type)
 
                         $("#ft_"+rowID).parent().remove();
 
+
                         swal("Good job!", "بەسەرکەوتویی ئەم قائیمە وەرگیرا ", "success");
 
                         $("#pass_modal").modal("hide");
 
 
-                        // window.location="sales.php";
+                        window.location="sales.php";
 
 
                     }

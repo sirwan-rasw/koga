@@ -366,36 +366,60 @@ $('#user_form').on('submit', function(event){
 </script>
 
 <?php
-
+echo $_SESSION["type_price"];
 ?>
 
 
 
 <?php
-
-$query1 = "Select SUM(price) from sales where state=1 and id_comp='$id_comp' and id_koga='$id_koga' and sent='0' and type_price='$pricing'";
-$res1=mysqli_query($conn, $query1);
-$row1=mysqli_fetch_assoc($res1);
+//if($_SESSION["type_price"]=="dolar") {
+    $query1 = "Select SUM(price) from sales where state=1 and id_comp='$id_comp' and id_koga='$id_koga' and type_price='$pricing'";
+    $res1 = mysqli_query($conn, $query1);
+    $row1 = mysqli_fetch_assoc($res1);
 
 //koy paray draw 
 
-$query2 = "Select SUM(price) from sales where wasl=1 and state=1 and id_comp='$id_comp' and id_koga='$id_koga' and type_price='$pricing'";
-$res2=mysqli_query($conn, $query2);
-$row2=mysqli_fetch_assoc($res2);
+    $query2 = "Select SUM(price) from sales where wasl=1 and state=1 and id_comp='$id_comp' and id_koga='$id_koga' and type_price='$pricing'";
+    $res2 = mysqli_query($conn, $query2);
+    $row2 = mysqli_fetch_assoc($res2);
 
 //qarzy kon wata am dwanay sarawa naqs bka 
 
-$qarz_kon=$row1["SUM(price)"]-$row2["SUM(price)"];
+    $qarz_kon = $row1["SUM(price)"] - $row2["SUM(price)"];
 
 //awanay hatwn 
 
 
-$query3 = "Select SUM(price) from sales where id_s IN (".$ids.") and id_comp='$id_comp' and id_koga='$id_koga' and type_price='$pricing'";
-$res3=mysqli_query($conn, $query3);
-$row3=mysqli_fetch_assoc($res3);
+    $query3 = "Select SUM(price) from sales where id_s IN (" . $ids . ") and id_comp='$id_comp' and id_koga='$id_koga' and type_price='$pricing'";
+    $res3 = mysqli_query($conn, $query3);
+    $row3 = mysqli_fetch_assoc($res3);
 
-$qarz_taza=$qarz_kon-$row3["SUM(price)"];
-
+    $qarz_taza = $qarz_kon - $row3["SUM(price)"];
+//}else{
+//    $query1 = "Select SUM(price) from sales where state=1 and id_comp='$id_comp' and id_koga='$id_koga' and type_price='$pricing'";
+//    $res1 = mysqli_query($conn, $query1);
+//    $row1 = mysqli_fetch_assoc($res1);
+//
+////koy paray draw
+//
+//    $query2 = "Select SUM(price) from sales where wasl=1 and state=1 and id_comp='$id_comp' and id_koga='$id_koga' and type_price='$pricing'";
+//    $res2 = mysqli_query($conn, $query2);
+//    $row2 = mysqli_fetch_assoc($res2);
+//
+////qarzy kon wata am dwanay sarawa naqs bka
+//
+//    $qarz_kon = $row1["SUM(price)"] - $row2["SUM(price)"];
+//
+////awanay hatwn
+//
+//
+//    $query3 = "Select SUM(price) from sales where id_s IN (" . $ids . ") and id_comp='$id_comp' and id_koga='$id_koga' and type_price='$pricing'";
+//    $res3 = mysqli_query($conn, $query3);
+//    $row3 = mysqli_fetch_assoc($res3);
+//
+//    $qarz_taza = $qarz_kon - $row3["SUM(price)"];
+//
+//}
 
 // $query3 = "SELECT SUM(draw) FROM test,companies WHERE test.code_sharika=companies.id";
 // $res3=mysqli_query($conn, $query3);
